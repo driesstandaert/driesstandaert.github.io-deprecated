@@ -91,3 +91,19 @@ VanillaTilt.init(document.querySelector(".js-tilt"), {
 
 // Aos
 AOS.init();
+
+
+// Tooltip (not on mobile)
+if(window.matchMedia('(min-width:678px)').matches)
+    document.querySelectorAll('.js-toolbox').forEach(el => {
+        el.addEventListener('mousemove', event => {
+            var position = el.getBoundingClientRect();
+            var x = event.clientX - position.left - 70;
+            var y = event.clientY - position.top + 20;
+            el.getElementsByClassName('js-tooltip')[0].style.left = x + "px";
+            el.getElementsByClassName('js-tooltip')[0].style.top = y + "px";
+            console.log(x);        
+        })
+    })
+
+
