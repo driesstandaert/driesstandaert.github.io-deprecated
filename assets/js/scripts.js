@@ -2,7 +2,7 @@
 const nav = document.querySelector(".js-nav");
 const navSocial = document.querySelector(".js-nav-social");
 const navTrigger = document.querySelector(".js-nav-trigger");
-const navLink = document.querySelector(".js-nav-link");
+const navLink = document.querySelectorAll('.js-nav-link');
 const body = document.body;
 
 function toggleMobileNav() {
@@ -20,7 +20,7 @@ function toggleMobileNav() {
 function closeMobileNav() {
     nav.classList.remove('is-visible');
     navTrigger.classList.remove('is-active');
-    stopFixedBody();
+    stopFixedBody();   
 };
 
 function stopFixedBody() {
@@ -31,7 +31,12 @@ function stopFixedBody() {
 }
 
 navTrigger.addEventListener( 'click', toggleMobileNav );
-navLink.addEventListener( 'mousedown', closeMobileNav );
+
+navLink.forEach(el => {
+    el.addEventListener('click', event => {
+        closeMobileNav();
+    })
+  })
 
 
 // Wobble animation
@@ -65,8 +70,7 @@ if(soundTrigger){
 // Nanobar
 let options = {
     classname: 'p-nanobar',
-    id: 'nanobar',
-    target: document.getElementById('myDivId')
+    id: 'nanobar'
 };
 
 const nanobar = new Nanobar( options );
