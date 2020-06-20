@@ -1,20 +1,34 @@
 // Mobile nav
-
 const nav = document.querySelector(".js-nav");
 const navSocial = document.querySelector(".js-nav-social");
 const navTrigger = document.querySelector(".js-nav-trigger");
 const navLink = document.querySelector(".js-nav-link");
+const body = document.body;
 
 function toggleMobileNav() {
     nav.classList.toggle('is-visible');
     navSocial.classList.toggle('is-hidden');
     navTrigger.classList.toggle('is-active');
+    if (navTrigger.classList.contains('is-active')) {
+        body.style.position = 'fixed';
+        body.style.top = `-${scrollY}`;
+    } else {
+        stopFixedBody();
+    }
 };
 
 function closeMobileNav() {
     nav.classList.remove('is-visible');
     navTrigger.classList.remove('is-active');
+    stopFixedBody();
 };
+
+function stopFixedBody() {
+    const scrollY = body.style.top;
+    body.style.position = '';
+    body.style.top = '';
+    window.scrollTo(0, parseInt(scrollY || '0') * -1);
+}
 
 navTrigger.addEventListener( 'click', toggleMobileNav );
 navLink.addEventListener( 'mousedown', closeMobileNav );
