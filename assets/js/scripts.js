@@ -101,8 +101,7 @@ if(window.matchMedia('(min-width:678px)').matches)
             var x = event.clientX - position.left - 70;
             var y = event.clientY - position.top + 20;
             el.getElementsByClassName('js-tooltip')[0].style.left = x + "px";
-            el.getElementsByClassName('js-tooltip')[0].style.top = y + "px";
-            console.log(x);        
+            el.getElementsByClassName('js-tooltip')[0].style.top = y + "px";      
         })
     })
 
